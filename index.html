@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Firebase Example</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+  <!-- Incluir scripts de Firebase desde la CDN -->
+  <script src="https://www.gstatic.com/firebasejs/9.8.1/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.8.1/firebase-firestore-compat.js"></script>
+  <style>
+    body {
+      background-color: #7ca7d3; /* Fondo color gris oscuro */
+      color: #ffffff; /* Texto color blanco */
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+    .container {
+      max-width: 800px;
+      margin-top: 50px;
+      background-color: #ffffff; /* Contenedor color blanco */
+      border-radius: 10px;
+      box-shadow: 0 0 20px rgba(0,0,0,0.1);
+      padding: 30px;
+      color: #343a40; /* Texto color gris oscuro */
+    }
+    h1, h2 {
+      color: #007bff;
+    }
+    .btn-primary, .btn-info, .btn-danger, .btn-secondary {
+      border-radius: 50px;
+    }
+    .btn-primary:hover {
+      background-color: #0056b3;
+      border-color: #0056b3;
+    }
+    .btn-danger:hover {
+      background-color: #bd2130;
+      border-color: #bd2130;
+    }
+    .btn-info:hover {
+      background-color: #117a8b;
+      border-color: #117a8b;
+    }
+    .btn-secondary:hover {
+      background-color: #545b62;
+      border-color: #545b62;
+    }
+    .form-control:focus {
+      border-color: #007bff;
+      box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25);
+    }
+    .table {
+      margin-top: 30px;
+    }
+    .thead-dark {
+      background-color: #343a40;
+      color: #ffffff;
+    }
+    .table-striped tbody tr:nth-of-type(odd) {
+      background-color: rgba(0, 0, 0, 0.05);
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1 class="mb-4">Agregar Usuario</h1>
+    <!-- Formulario para agregar usuarios -->
+    <div class="mb-3">
+      <input type="text" id="nombre" placeholder="Nombre" class="form-control mb-2">
+      <input type="text" id="apellido" placeholder="Apellido" class="form-control mb-2">
+      <input type="date" id="fecha" placeholder="Fecha de nacimiento" class="form-control mb-2">
+      <button id="guardarButton" class="btn btn-primary">Guardar</button>
+    </div>
+
+    <!-- Formulario para editar usuarios (oculto por defecto) -->
+    <div id="formulario" style="display: none;">
+      <h2 class="mb-4">Editar Usuario</h2>
+      <input type="hidden" id="idEdit">
+      <input type="text" id="nombreEdit" placeholder="Nombre" class="form-control mb-2">
+      <input type="text" id="apellidoEdit" placeholder="Apellido" class="form-control mb-2">
+      <input type="date" id="fechaEdit" placeholder="Fecha de nacimiento" class="form-control mb-2">
+      <button id="guardarEdicionButton" class="btn btn-info">Actualizar</button>
+      <button id="cancelarEdicionButton" class="btn btn-secondary ms-2">Cancelar</button>
+    </div>
+
+    <!-- Tabla para mostrar usuarios -->
+    <table class="table table-striped table-bordered mt-4">
+      <thead class="thead-dark">
+        <tr>
+          <th scope="col">ID</th>
+          <th scope="col">Nombre</th>
+          <th scope="col">Apellido</th>
+          <th scope="col">Fecha de nacimiento</th>
+          <th scope="col">Eliminar</th>
+          <th scope="col">Editar</th>
+        </tr>
+      </thead>
+      <tbody id="tabla">
+        <!-- Aquí se agregarán dinámicamente las filas de la tabla -->
+      </tbody>
+    </table>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>
